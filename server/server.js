@@ -7,18 +7,21 @@ const schema = require('./schema/schema');
 
 const app = express();
 
-// Replace with your mongoLab URI
-const MONGO_URI = '';
+// Replace with your mongoAtlas URI
+const MONGO_URI = 'mongodb+srv://dharmabumzee:vf5xaHGlNflczORN@cluster0.zq4rf.mongodb.net/LYRICAL-GRAPHQL?retryWrites=true&w=majority';
 if (!MONGO_URI) {
-  throw new Error('You must provide a MongoLab URI');
+  throw new Error('You must provide a MongoAtlas URI');
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect(MONGO_URI);
-mongoose.connection
-    .once('open', () => console.log('Connected to MongoLab instance.'))
-    .on('error', error => console.log('Error connecting to MongoLab:', error));
-
+mongoose
+.connect(MONGO_URI, {
+  useNewUrlParser: true
+})
+.then(() => console.log('Connected to MongoDB instance.'))
+.catch(error =>
+  console.log('Error connecting to MongoDB:', `${error.message}`)
+);
 app.use(bodyParser.json());
 app.use('/graphql', expressGraphQL({
   schema,
