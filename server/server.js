@@ -8,7 +8,7 @@ const expressGraphQL = require('express-graphql');
 const app = express();
 
 // Replace with your mongoAtlas URI
-const MONGO_URI = 'mongodb+srv://dharmabumzee:vf5xaHGlNflczORN@cluster0.zq4rf.mongodb.net/LYRICAL-GRAPHQL?retryWrites=true&w=majority';
+const MONGO_URI = 'mongodb+srv://<username>:<password>@cluster0.zq4rf.mongodb.net/<dbname>?retryWrites=true&w=majority';
 if (!MONGO_URI) {
   throw new Error('You must provide a MongoAtlas URI');
 }
